@@ -1,13 +1,15 @@
 window.onload = function () {
 	var CONST = {
-		START_MINUTE : 25,
+		START_MINUTE : 1,
 	}
 
 	var timer = document.querySelector("#timer");
 	initializeTimer(timer);
 
+	var sound = new Audio("asset/dingdong/dingdong.mp3");
+
 	var button = document.querySelector("#button");
-	button.addEventListener("click", countdown); 
+	//button.addEventListener("click", countdown); 
 	window.addEventListener("keydown", countdown);
 
 	function countdown (ev) {
@@ -19,7 +21,9 @@ window.onload = function () {
 		var elapsedSeconds = 60;
 		var interval = setInterval(tick, 1000);
 
-		var work = prompt("작업한 것: ");
+		sound.onplay = function () { prompt("작업한 것: "); };
+		sound.play();
+
 		console.log(work);
 		function tick(timestamp) {
 			if(elapsedSeconds === CONST.START_MINUTE * 60 + 59) {
