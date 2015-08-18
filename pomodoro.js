@@ -1,6 +1,6 @@
 window.onload = function () {
 	var CONST = {
-		START_MINUTE : 1,
+		START_MINUTE : 25,
 	}
 
 	var timer = document.querySelector("#timer");

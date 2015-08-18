@@ -1,0 +1,75 @@
+html, body, ul { margin: 0px; padding: 0px; border: 0px; }
+h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; font-weight: normal; }
+
+body {  
+	font-family: 'Apple SD 산돌고딕 Neo', 'Apple SD Gothic Neo', 나눔고딕, NanumGothic, '맑은 고딕', 'Malgun Gothic', 돋움, dotum, sans-serif;
+	font-size: 1em;
+	background-color: #fff;
+}
+
+header {
+	top:0px;
+	height: 48px;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+}
+
+#header-container{
+	margin: auto;
+	width: 90%;
+}
+
+ul, li {
+	display: inline;
+	font-weight: 200;
+}
+
+li {
+	margin-right: 20px;
+	padding: 5px;
+	line-height: 48px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#header-container li:hover {
+	color:#ff6600;
+}
+
+
+
+#work-inventory-bar {
+	display: inline-block;
+	width: 200px;
+	float: right;
+	text-align: center;
+	line-height: 48px;
+	vertical-align: middle;
+}
+
+section{
+	margin:auto;
+	width: 80%;
+	text-align: center;
+	font-size: 4em;
+	color: rgb(85, 85, 85);
+	letter-spacing: -2.51999998092651px;
+}
+
+#work {
+	border-bottom: 1px solid #ddd;
+	font-weight: 200;
+}
+
+#timer {
+	margin-top: 100px;
+	margin-bottom: 30px;
+
+	color: #ff6600;
+	font-weight: 600;
+	font-size: 2em;
+}
+
+.center .btn-container {
+	margin-top: 40px;
+}
