@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; font-weight: normal; }
 body {  
 	font-family: 'Apple SD 산돌고딕 Neo', 'Apple SD Gothic Neo', 나눔고딕, NanumGothic, '맑은 고딕', 'Malgun Gothic', 돋움, dotum, sans-serif;
 	font-size: 1em;
-	background-color: #fff;
+	background-color: #eee;
 }
 
 header {
@@ -32,11 +32,9 @@ li {
 	cursor: pointer;
 }
 
-#header-container li:hover {
+#header-container li:hover, #work-inventory-bar:hover {
 	color:#ff6600;
 }
-
-
 
 #work-inventory-bar {
 	display: inline-block;
@@ -45,6 +43,78 @@ li {
 	text-align: center;
 	line-height: 48px;
 	vertical-align: middle;
+	cursor: pointer;
+}
+
+/*arrow관련은 잘 모르고 쓴 부분..*/
+.arrow-head{
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	top: 43px;
+	right: 125px;
+	width: 50px;
+	height: 10px;
+	z-index: 1;
+}
+
+.arrow-head::after {
+	border: 1px solid;
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 50%;
+	width: 12px;
+	height: 12px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	z-index: 1;
+	background-color: #fff;
+	border: 1px solid rgb(214, 214, 214);
+}
+/*arrow관련은 잘 모르고 쓴 부분..*/
+
+
+aside.modal {
+	display: none;
+	position: absolute;
+	top: 52px;
+	right: 15px;
+	width: 300px;
+	height: 500px;
+	background-color: #fff;
+	border: 1px solid rgb(214, 214, 214);
+	border-radius: 2px;
+	color: #000;
+	
+}
+
+/*transition*/
+aside.modal, .arrow-head {
+	-webkit-transition: opacity 1s;
+    transition: opacity 1s;
+    animation-name: register;
+    animation-duration: .5s;
+    animation-timing-function: ease;
+}
+
+@keyframes register {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+.todo-today, .work-inventory {
+	height: 250px;
+	padding: 20px;
+}
+
+.work-inventory {
+	border-top: 1px solid rgb(214, 214, 214);
 }
 
 section{
@@ -57,7 +127,6 @@ section{
 }
 
 #work {
-	border-bottom: 1px solid #ddd;
 	font-weight: 200;
 }
 

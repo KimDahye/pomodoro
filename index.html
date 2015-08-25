@@ -4,7 +4,12 @@
     	<title>pomodoro</title>
         <meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="asset/style.css">
+        <script  type = "text/javascript" src="asset/jquery.min.js"></script>       
         <script src="asset/timer.js"></script>
+        <script src="asset/main.js"></script>
+
+
+
 
     </head>
     <body>
@@ -15,7 +20,20 @@
                 <li>stat</li>
 				<li>setting</li>
 			</ul>
-            <div id="work-inventory-bar">inventory</div>
+                <div id="work-inventory-bar">inventory</div>
+                <span class="arrow-head">
+                </span>
+                <aside class="modal">
+                    <div class="todo-today">
+                        <h2>TODO TODAY</h2>
+                        <textarea></textarea>
+                    </div>
+                    <div class="work-inventory">
+                        <h2>WORK INVENTORY</h2>
+                        <textarea></textarea>
+
+                    </div>
+                </aside>
             </div>
 		</header>
     	<div id="top-left">
