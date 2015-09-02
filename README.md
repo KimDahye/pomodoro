@@ -36,5 +36,27 @@
 * 9/8: 통계 페이지에 보일 chart 만들기 
     - canvas 공부하기, 통계 페이지 완성하기 
     - 차트에는 하루를 시계로 표현하여 그 시계 안에 몇개의 뽀모도로 했는지 그 뽀모도로에서 한 게 뭔지, break는 언제 가졌는지, 오늘 하루 몇개의 방해를 받았는지가 기록되어 있다.
-* 9:15: 통계 페이지까지 완성. 그리고 서버가 혹시 필요하다면 서버와 붙이기.
+* 9:15: 통계 페이지까지 완성. 서버와 붙이기.
 * 언젠가: webWorker, promise 공부하기
+
+## Operation and Development Env.
+* 개발 환경은 MAC/Node.js/Mongo 
+* 운영 환경은 LINUX/Node.js/Mongo
+
+## Rough data model
+* user 
+  * email
+  * password
+* work inventory
+  * user
+  * content
+* todo today
+  * user
+  * date
+  * content
+  * completed
+* pomodoro
+  * todo today
+  * start time
+  * end time
+  * detail notes (nullable)
