@@ -1,4 +1,5 @@
 /*DB에서 넘어온  데이터라고 가정*/
+//현재는 쓰고 있지 않다. 
 var data = [
     {
         startTime: "20150915-17:00",
@@ -35,12 +36,12 @@ $(document).ready(function () {
   // 3. draw donut chart
   //drawDonut(0, Math.PI * 2, "#eee");
   drawBackground();
-  drawInnerDonut(calculateTimeToRadian("07:00"), calculateTimeToRadian("07:25"), "rgba(247,70,74, 0.7)");
-  drawInnerDonut(calculateTimeToRadian("11:20"), calculateTimeToRadian("11:50"), "rgba(247,70,74, 0.7)");
+  drawInnerDonut(calculateTimeToRadian("07:00"), calculateTimeToRadian("07:25"), "rgba(247,70,74, 1)");
+  drawInnerDonut(calculateTimeToRadian("11:20"), calculateTimeToRadian("11:50"), "rgba(247,70,74, 1)");
 
-  drawOutterDonut(calculateTimeToRadian("17:00"), calculateTimeToRadian("17:25"), "rgba(247,70,74, 0.7)");
-  drawOutterDonut(calculateTimeToRadian("17:30"), calculateTimeToRadian("17:55"), "rgba(70, 191, 189, 0.7)");
-  drawOutterDonut(calculateTimeToRadian("18:00"), calculateTimeToRadian("18:25"), "rgba(253, 189, 92, 0.7)");
+  drawOutterDonut(calculateTimeToRadian("17:00"), calculateTimeToRadian("17:25"), "rgba(247,70,74, 1)");
+  drawOutterDonut(calculateTimeToRadian("17:30"), calculateTimeToRadian("17:55"), "rgba(70, 191, 189, 1)");
+  drawOutterDonut(calculateTimeToRadian("18:00"), calculateTimeToRadian("18:25"), "rgba(253, 189, 92, 1)");
 
   //*******************************************************//\        
   // drawDonut() function drawes 2 full or partial circles inside each other one clockwise and the other is counter-clockwise
