@@ -1,51 +1,51 @@
-window.onload = function () {
-	var CONST = {
-		START_MINUTE : 1,
-	}
+function Timer (pomodoroTime, breakTime){
+	this.elTimer = document.querySelector("#timer");
+	this.pomodoroTime = pomodoroTime;
+	this.breakTime = breakTime;
+	this.interval;
+ }
 
-	var timer = document.querySelector("#timer");
-	initializeTimer(timer);
+Timer.prototype.initializeTimer = function (minute) {
+	this.elTimer.innerText = ((String(minute).length == 1) ? "0" + minute : minute) + ":" + "00";
+}
 
-	var sound = new Audio("asset/dingdong/dingdong.mp3");
+/* minute만큼 countdown.
+ * countdown이 끝나면 resetMinute으로 elTimer 내용 reset.
+*/
+Timer.prototype.countdown = function(minute, resetMinute) {
+	var start = new Date();
+	var elapsedSeconds = 60;
+	this.interval = setInterval(tick.bind(this), 1000);
 
-	var button = document.querySelector("#button");
-	//button.addEventListener("click", countdown); 
-	window.addEventListener("keydown", countdown);
-
-	function countdown (ev) {
-		//spacebar가 아니면 return
-		if(ev.type === "keydown" && ev.keyCode !== 32) {
+	console.log(this);
+	function tick(timestamp) {
+		if(elapsedSeconds >= minute * 60 + 59) {
+			this.initializeTimer(resetMinute);
+			clearInterval(this.interval);
+			dispatchEvent(timerEnd);
 			return;
 		}
-		var start = new Date();
-		var elapsedSeconds = 60;
-		var interval = setInterval(tick, 1000);
-
-		sound.onplay = function () { prompt("작업한 것: "); };
-		sound.play();
-
-		console.log(work);
-		function tick(timestamp) {
-			if(elapsedSeconds === CONST.START_MINUTE * 60 + 59) {
-				initializeTimer(timer);
-				clearInterval(interval);
-
-				return;
-			}
-			elapsedSeconds++;
-			console.log(elapsedSeconds);
-			var elapsedMinutes = Math.floor(elapsedSeconds/60);
-		 	var modularElapsedSeconds = elapsedSeconds % 60;
-			var mm =  CONST.START_MINUTE - elapsedMinutes;
-			var ss = 60 - modularElapsedSeconds;
-			mm = (String(mm).length == 1) ? "0" + mm : mm;
-			ss = (String(ss).length == 1) ? "0" + ss : ss;	
-			timer.innerText = mm + ":" + ss;
-		}
+		elapsedSeconds = elapsedSeconds + 5; //elapsedSeconds++ 임. 5배속으로 빠르게 테스트 하기 위해 바꿔놓음.
+		console.log(elapsedSeconds);
+		var elapsedMinutes = Math.floor(elapsedSeconds/60);
+	 	var modularElapsedSeconds = elapsedSeconds % 60;
+		var mm =  minute - elapsedMinutes;
+		var ss = 60 - modularElapsedSeconds;
+		mm = (String(mm).length == 1) ? "0" + mm : mm;
+		ss = (String(ss).length == 1) ? "0" + ss : ss;	
+		this.elTimer.innerText = mm + ":" + ss;
 	}
+}
 
-	function initializeTimer(timer) {
-		var startMinute = (String(CONST.START_MINUTE).length == 1) ? "0" + CONST.START_MINUTE : CONST.START_MINUTE;
-		timer.innerText = startMinute + ":" + "00";
-	}
- }
+Timer.prototype.getPomodoroTime = function(){
+	return this.pomodoroTime;
+}
+
+Timer.prototype.getBreakTime = function() {
+	return this.breakTime;
+}
+
+Timer.prototype.clearInterval = function() {
+	clearInterval(this.interval);
+}
+
