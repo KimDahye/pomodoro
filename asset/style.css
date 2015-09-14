@@ -166,3 +166,12 @@ section{
 	color:#eee;
 	cursor: pointer;
 } 
+
+#myChart {
+	width: 50%;
+	height: 50%;
+	margin: auto ;
+	margin-top: 20px;
+	padding: 30px;
+	background-color: #fff;
+}
