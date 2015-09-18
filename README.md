@@ -50,6 +50,7 @@
 * work inventory
   * user
   * content
+  * deleted
 * todo today
   * user
   * date
