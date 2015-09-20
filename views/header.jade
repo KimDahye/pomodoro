@@ -1,0 +1,27 @@
+doctype html
+html
+ head
+   title=pomodoro
+   meta(charset='utf-8')
+   link(rel='stylesheet', href='../asset/style.css')
+   script(src='../asset/jquery.min.js')
+   script(src='../asset/chart.js')
+   script(src='../asset/main.js')
+   script(src='../asset/timer.js')
+ body
+  header
+   div#header-container
+    ul
+     li
+      a(href='index.htm.') pomodoro
+     li
+      a(href='statistics.html') statistics
+    div#work-inventory-bar inventory
+    span.arrow-head
+    aside.modal
+     div.todo-today
+      h2 TODO TODAY
+      textarea
+     div.work-inventory
+      h2 WORK INVENTORY
+      textarea
