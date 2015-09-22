@@ -1,0 +1,39 @@
+<div id="header-container">
+<ul>
+    <li><a href="/">pomodoro</a></li>
+    <li><a href="/statistics">stat</a></li>
+    <li>setting</li>
+</ul>
+    <div id="work-inventory-bar">inventory</div>
+    <span class="arrow-head">
+    </span>
+    <aside class="modal">
+        <div class="todo-today">
+            <h2>TODO TODAY</h2>
+            <ul class="todo-list">
+                <% for(var i=0; i < todos.length; i++) { %>
+                    <li data-tid='<%= todos[i]._id%>'>
+                        <input type="checkbox" name="todo" value='<%= todos[i].content %>'>
+                        <span><%= todos[i].content %></span>
+                        <button class='todo-delete-btn'>삭제</button>
+                    </li>
+               <% } %>
+            </ul>
+            <input class='todo-input' type="text" name="todo-content" placeholder="todo add...">
+            <button class="todo-add-btn">추가</button>
+        </div>
+        <div class="work-inventory">
+            <h2>WORK INVENTORY</h2>
+            <ul class="work-list">
+                <% for(var i=0; i < works.length; i++) { %>
+                    <li data-wid='<%= works[i]._id%>'>
+                        <span><%= works[i].content %></span>
+                        <button class='work-delete-btn'>삭제</button>
+                    </li>
+               <% } %>
+            </ul>
+          <input class='work-input' type="text" name="work-content" placeholder="work add...">
+          <button class="work-add-btn">추가</button>
+        </div>
+    </aside>
+</div>

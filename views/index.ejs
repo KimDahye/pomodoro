@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>pomodoro</title>
+        <meta charset="utf-8">
+    	<link rel="stylesheet" type="text/css" href="style.css">
+        <script  type = "text/javascript" src="jquery.min.js"></script>    
+        <script src="main.js"></script>
+        <script src="timer.js"></script>
+    </head>
+    <body>
+    	<header>
+			<% include header %>
+		</header>    
+    	<section class="center">
+            <div id="timer"></div>
+    		<div id="work">Now I'm focusing on...</div>
+    		<div class="btn-container start" >start</div>
+            <div class="btn-container finish" style="display:none">finish</div>
+            <div id='todo-list-modal' style='display:none'>
+                <ul class="todo-list">
+                    <% for(var i=0; i < todos.length; i++) { %>
+                        <li data-tid='<%= todos[i]._id%>'>
+                            <input type="checkbox" name="todo" value='<%= todos[i].content %>'>
+                            <span><%= todos[i].content %></span>
+                        </li>
+                   <% } %>
+                </ul>
+            </div>
+    	</section>
+    </body>
+</html>

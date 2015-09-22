@@ -1,0 +1,33 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "## 뽀모도로 테크닉이란? 1. plan : 일 목록이라고 하는 백로그에서 가장 중요한 일을 추려내고 할 일 목록에 이 일들을 적는 것으로 하루 시작. 2. track: 25분으로 맞추고 첫번째 일을 시작. 이동안 프로세스 측정지표를 몇가지 모은다. 내부 방해, 외부 방해 몇번인지 등 3. record: 하루 정리할 때, 그날 관찰한 것을 정리 - 방해받은 숫자 기록 4. process: 가공하지 않은 자료 -> 정보로 바꾸기. ie. 평균 몇번의 방해가 있었나. 등 5. visualize: 정보를 조직화. 일일회고에 해당, 업무 습관을 현실에 맞춘다.",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KimDahye/pomodoro.git"
+  },
+  "keywords": [
+    "pomodoro"
+  ],
+  "author": "Dahye Sophie Kim <dahye.sophie.kim@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KimDahye/pomodoro/issues"
+  },
+  "homepage": "https://github.com/KimDahye/pomodoro",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "cookie-parser": "^1.4.0",
+    "debug": "~2.2.0",
+    "ejs": "^2.3.4",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "method-override": "^2.3.5",
+    "mongoose": "~4.0.0",
+    "mongoose-auto-increment": "^4.0.0",
+    "morgan": "~1.6.1"
+  }
+}

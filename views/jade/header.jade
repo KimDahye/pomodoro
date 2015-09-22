@@ -3,19 +3,18 @@ html
  head
    title=pomodoro
    meta(charset='utf-8')
-   link(rel='stylesheet', href='../asset/style.css')
-   script(src='../asset/jquery.min.js')
-   script(src='../asset/chart.js')
-   script(src='../asset/main.js')
-   script(src='../asset/timer.js')
+   link(rel='stylesheet', href='style.css')
+   script(src='jquery.min.js')
+   script(src='main.js')
+   script(src='timer.js')
  body
   header
    div#header-container
     ul
      li
-      a(href='index.html') pomodoro
+      a(href='/') pomodoro
      li
-      a(href='statistics.html') statistics
+      a(href='/statistics') statistics
     div#work-inventory-bar inventory
     span.arrow-head
     aside.modal

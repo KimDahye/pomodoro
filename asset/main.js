@@ -12,7 +12,7 @@ var Modal = {
 		} else {
 			arrowhead.style.display = "block";
 			modal.style.display = "block";		}
-	}
+	},
 }
 
 /*Pomodoro*/
@@ -47,14 +47,20 @@ var Todo = {
 /*Today*/
 var Today = {
 	date: new Date(),
-	sound : new Audio("asset/dingdong/dingdong.mp3"),
+	sound : new Audio("dingdong/dingdong.mp3"),
 	todoList : [],
 	timer : null,
 	timerEndHandler : null,
 
-	parse: function() {
-		this.todoList = $(".todo-today textarea").val().split("\n");
-		//[DB]에 Today.date - todoList 순서쌍 저장! - 각각의 id를 반환받는다. 
+	// parse: function() {
+	// 	this.todoList = $(".todo-today textarea").val().split("\n");
+	// 	//[DB]에 Today.date - todoList 순서쌍 저장! - 각각의 id를 반환받는다. 
+	// },
+
+	isStartable: function () {
+		//todo가 하나라도 있으면 true;
+		console.log($('.todo-today .todo-list').children().length);
+		return $('.todo-today .todo-list').children().length !== 0;
 	},
 
 	setTimer: function(timer) {
@@ -62,18 +68,28 @@ var Today = {
 	},
 
 	selectWork: function() {
-		var focusingWork = prompt("작업할 것을 골라주세요:" + this.todoList); //prompt가 아닌 checkbox로 해서 무조건 선택되도록 해야 함!	
-		$("#work").html(focusingWork);
+		$('#todo-list-modal').css('display', 'block');
+		$('#todo-list-modal .todo-list').on('click', 'input', function(e) {
+			var input = e.currentTarget;
+			var tid = input.parentNode.dataset.tid;
+			var todoContent = input.value();
+		})
 	}, 
 
 	startPomodoro: function() {
-		this.parse();
-		console.log(this.todoList);
-		if(this.todoList.length === 0 || this.todoList[0] === "") {
+		//this.parse();
+		// if(this.todoList.length === 0 || this.todoList[0] === "") {
+		// 	alert("todo today를 입력하세요.");
+		// 	return;
+		// }
+
+		if(!this.isStartable()){
 			alert("todo today를 입력하세요.");
 			return;
 		}
+		console.log(this.isStartable());
 
+		//todo 선택하는 modal창 띄우고, 선택 입력받기
 		$(".center .finish").show();
 		$(".center .start").hide();
 		this.work();
@@ -82,7 +98,9 @@ var Today = {
 	finishPomodoro: function() {
 		$(".center .finish").hide();
 		$(".center .start").show();
-		$(".todo-today textarea").val("");
+		
+		//$(".todo-today textarea").val(""); 
+		//todo 목록 reset
 		this.timer.clearInterval();
 		this.timer.initializeTimer(this.timer.pomodoroTime);
 	},
@@ -118,6 +136,29 @@ var Today = {
 	}
 }
 
+/*ajax callback functions*/
+var ajaxCallback = {
+	workAdd: function (data) {
+		console.log(data); 
+		//todo - data 받아서 template에 넣고 ul에 붙여주기
+	},
+
+	workDelete: function (data) {
+		console.log(data);
+		//todo - data 받아서 성공여부 확인한뒤 list 지워주기
+	},
+
+	todoAdd: function (data) {
+		console.log(data); 
+		//todo - data 받아서 template에 넣고 ul에 붙여주기
+	},
+
+	todoComplete: function (data) {
+		console.log(data);
+		//todo - data 받아서 성공여부 확인한뒤 list 지워주기		
+	}
+}
+
 /*Main*/
 $(document).ready(function () {
 	var timer = new Timer(2, 1);
@@ -127,5 +168,45 @@ $(document).ready(function () {
 	$("#work-inventory-bar").on("click", Modal.display);
 	$(".center .start").on("click", Today.startPomodoro.bind(Today)); //여기서 bind(this)를 하면 #documnet가 나온다.. 이렇게 Today를 직접 binding할 수 밖에 없는 건가?
 	$(".center .finish").on("click", Today.finishPomodoro.bind(Today)); 
-});
 
+	//work add ajax
+	$('.work-add-btn').on('click', function(){ 
+		console.log('content='+$('.work-input').val());
+	  	$.ajax({ 
+    		url: '/work', 
+    		method: 'POST',
+    		data: {'content' : $('.work-input').val()}
+   		}).done(ajaxCallback.workAdd);
+	});
+
+	//work delete ajax
+	$('.work-list').on('click', '.work-delete-btn', function(e) {
+		var wid = e.currentTarget.parentNode.dataset.wid;
+	  	$.ajax({ 
+    		url: '/work/' + wid, 
+    		method: 'DELETE',
+   		}).done(ajaxCallback.workDelete);
+	});
+
+	//add todo
+	$('.todo-add-btn').on('click', function(){ 
+		console.log('content='+$('.todo-input').val());
+	  	$.ajax({ 
+    		url: '/todo', 
+    		method: 'POST',
+    		data: {'content' : $('.todo-input').val()}
+   		}).done(ajaxCallback.workAdd);
+	}); 
+
+	//complete todo
+	$('.todo-list').on('click', 'input', function(e) {
+		var input = e.currentTarget;
+		var tid = e.currentTarget.parentNode.dataset.tid;
+		var completed = input.checked? 1 : 0;
+	  	$.ajax({ 
+    		url: '/todo/' + tid, 
+    		method: 'PUT',
+    		data: 'completed=' + completed
+   		}).done(ajaxCallback.todoComplete);
+	});
+});
